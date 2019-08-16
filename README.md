@@ -17,9 +17,9 @@
 
 2.获取翻译的内容：①到网页源代码里进行截取和回传。在百度首页查找“translate”单词，然后打开开发人员工具搜索“翻译”“转变”等几个意思，最后在标记<span class=”op_dict_text2”></span>里面发现网页显示的翻译都存在于这个标记里面。
 
-连续尝试了几个单词后发现都是在<span class=”op_dict_text2”></span>标签里，那么就可以确定这种方法的思路了。首先明确是要去http://www.baidu.com/s?wd=这个网站找寻标签，那么就分别定义三个变量来代表网站、标签头和标签尾。然后定义一个HttpURLConnection对象来建立起连接，通过BufferedReader将获得的输入流数据进行整理，获取翻译内容放入字符串变量，作为函数的返回值来调用。
+连续尝试了几个单词后发现都是在<span class=”op_dict_text2”></span>标签里，那么就可以确定这种方法的思路了。首先明确是要去<http://www.baidu.com/s?wd=> 这个网站找寻标签，那么就分别定义三个变量来代表网站、标签头和标签尾。然后定义一个HttpURLConnection对象来建立起连接，通过BufferedReader将获得的输入流数据进行整理，获取翻译内容放入字符串变量，作为函数的返回值来调用。
 
-②使用百度翻译API。首先要去百度翻译http://api.fanyi.baidu.com进行开发者申请，申请通过后会获得一个APP_ID和SECURITY_KEY，这是相当于后面要调用API的账号密码。
+②使用百度翻译API。首先要去百度翻译<http://api.fanyi.baidu.com> 进行开发者申请，申请通过后会获得一个APP_ID和SECURITY_KEY，这是相当于后面要调用API的账号密码。
 
 然后下载网站底部的Java Demo，提取出HttpGet.java、MD5.java、TransApi.java三个文件，放入新建的一个package中。上述三个是百度官方写的调用API的方法，HttpGet.java是建立起http连接的一个类，将输入的字符串进行URL编码，转换为%20形式，并且读取服务器的数据，进行翻译内容的获取。MD5.java是百度官方为了调用的安全，使用该算法来生成一段字符串，该java文件负责生成该字符串。TransApi.java用来发送所需要的总共六个字段。
 
